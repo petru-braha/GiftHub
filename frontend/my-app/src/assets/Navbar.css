@@ -1,0 +1,84 @@
+/* General */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e194a;
+    color: #c8abd6;
+    padding: 0.3rem 1.2rem; 
+    position: relative;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* spațiu între logo și text */
+  }
+  
+  .logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain; /* ca să nu se deformeze imaginea */
+    transform: scale(5.5)translateX(10px); /* Ajustează acest factor pentru a face logo-ul mai mare */
+    transform-origin: center; /* Setează centrul imaginii ca punct de scalare */
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+  }
+  
+  .nav-links li a,
+  .profile-btn {
+    background-color: transparent;
+    color: #c8abd6;
+    padding: 8px 14px;
+    border: 1px solid #c8abd6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .profile-menu {
+    position: relative;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .dropdown li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .dropdown li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .dropdown a {
+    color: #c8abd6;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+
+  

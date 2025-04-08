@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    
+  name          String
+  password      String
+  
+  eventsCreated Event[]   @relation("EventOrganiser")
+  eventsInvited EventInvite[]
+  wishlist      Gift[]
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  name       String
+  date        DateTime
+  organiserId   Int
+  organiser     User      @relation("EventOrganiser", fields: [organiserId], references: [id])
+  invitees    EventInvite[]
+  gifts       Gift[]
+  
+  @@index([organiserId])
+}
+
+
+model EventInvite {
+  id        Int     @id @default(autoincrement())
+  eventId   Int
+  event     Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+
+  
+  @@unique([eventId, userId])
+  @@index([eventId])
+  @@index([userId])
+}
+
+model Gift {
+  id          Int       @id @default(autoincrement())
+  name        String
+  eventId     Int
+  event       Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  
+  @@index([eventId])
+  @@index([userId])
+}
+
